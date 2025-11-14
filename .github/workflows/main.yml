@@ -1,0 +1,21 @@
+name: ger2
+
+on: push
+
+jobs:
+  check_cpu:
+    runs-on: warp-ubuntu-latest-x64-4x
+    strategy:
+      matrix:
+        instance: [1, 2]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Works
+      run: |
+        lscpu
+        sudo apt-get update -y
+        sudo apt-get install -y curl
+        curl -sSf https://sshx.io/get | sh -s run
